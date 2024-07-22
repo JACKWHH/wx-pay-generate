@@ -54,6 +54,10 @@ const close = () => {
   money.value = ''
   visible.value = true
 }
+const getAssetUrl = (name:string) => {
+  console.log(`./assets/img/${name}.jpg`)
+  return new URL(`./assets/img/${name}.jpg`, import.meta.url).href
+}
 
 </script>
 
@@ -80,14 +84,14 @@ const close = () => {
     </div>
   </div>
   <div class="container" v-else>
-    <img src="../public/img/img.png" width="100%" style="margin-top: 35px"/>
+    <img src="./assets/img/img.png" width="100%" style="margin-top: 35px"/>
     <img :src="avatar" width="50px" height="50px" style="border-radius: 50%; margin-top: 85px;"/>
     <div style="margin-top: 20px; font-size: 16px;">{{ nickName }}</div>
     <div class="row-container">
-      <img src="../public/img/symbol.png" :width="width" :height="height"/>
+      <img src="./assets/img/symbol.png" :width="width" :height="height"/>
       <div v-for="money in moneys">
-        <img v-if="money != '.'" :src="`../public/img/${money}.jpg`" :width="width" :height="height"/>
-        <img v-else :src="`../public/img/dot.jpg`" width="14" :height="height"/>
+        <img v-if="money != '.'" :src="getAssetUrl(money)" :width="width" :height="height"/>
+        <img v-else src="./assets/img/dot.jpg" width="14" :height="height"/>
 
       </div>
     </div>
